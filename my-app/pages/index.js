@@ -1,18 +1,19 @@
-import { Inter } from "next/font/google";
+import { TopSection } from "@/components/TopSection";
+import { Open_Sans } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Open_Sans({ subsets: ["latin"] });
 
 export default function Home() {
   return (
     <main
-      className={`flex min-h-screen flex-col items-center p-40 ${inter.className}`}
+      className={`w-full h-auto min-h-screen flex flex-col items-center justify-start border-2 ${inter.className}`}
     >
       {/* 
       
         Sections...
   
       */}
-      <h1>Hello</h1>
+      <TopSection />
     </main>
   );
 }
