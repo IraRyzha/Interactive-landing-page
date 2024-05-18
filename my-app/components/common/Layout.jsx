@@ -3,8 +3,8 @@ import { NavMenu } from "../NavMenu";
 
 export default function Layout({ children }) {
   return (
-    <div className="w-screen h-[2100px] relative border-4 border-yellow-300 px-40">
-      <NavMenu />
+    <div className="w-screen h-auto relative border-4 border-yellow-300 px-52">
+      <NavMenu type="main" />
       {children}
       <FooterSection />
     </div>

@@ -1,27 +1,45 @@
-import { menuItems } from "@/constants";
+import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 import logo from "./icons/logo.svg";
 
-export function NavMenu() {
+const menuItems = [
+  { name: "About", href: "" },
+  { name: "Careers", href: "" },
+  { name: "Events", href: "" },
+  { name: "Products", href: "" },
+  { name: "Support", href: "" },
+];
+
+/**
+ * @param {{
+ * type: string,
+ * }} props
+ */
+
+export function NavMenu({ type }) {
+  const navClassName = clsx(
+    "w-auto h-auto flex justify-between border-2",
+    {
+      main: "absolute z-50 top-0 inset-x-52 items-center py-16",
+      footer: "flex-col items-start",
+    }[type]
+  );
   return (
-    <div className="w-auto h-auto absolute z-50 top-0 inset-x-40 flex items-center justify-between py-16 border-2">
+    <div className={navClassName}>
       <Link href={"/"}>
-        <Image width={150} height={150} src={logo} />
+        <Image width={150} height={150} src={logo} alt="logo" />
       </Link>
-      <ul className="flex items-center gap-10">
+      <ul className="flex items-center gap-8">
         {menuItems.map((item, index) => {
           return (
             <li
               key={index}
-              className="text-white font-semibold hover:scale-[1.02] transition-all duration-100"
+              className="text-white font-semibold hover:scale-[1.02] relative group transition-all duration-500 ease-out"
             >
-              <Link href={item.href} className="relative group">
+              <Link href={item.href}>
                 {item.name}
-                <div className="w-full h-auto relative bottom-0 flex items-center">
-                  <span className="flex-1 absolute inset-x-0 h-[2px] bg-white -bottom-1 transform w-full hidden group-hover:block translate-x-0 group-hover:translate-x-1 transition-all duration-1000"></span>
-                  <span className="flex-1 absolute inset-x-0 h-[2px] bg-white -bottom-1 transform w-full hidden group-hover:block translate-x-0 group-hover:-translate-x-1 transition-all duration-1000"></span>
-                </div>
+                <span className="flex-1 absolute w-full h-[2px] bg-white rounded-lg -bottom-1 transform left-[50%] -translate-x-[50%] hidden group-hover:block transition-all duration-500 ease-out"></span>
               </Link>
             </li>
           );
