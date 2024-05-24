@@ -1,36 +1,32 @@
-import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 import logo from "./icons/logo.svg";
+import iconHamburger from "./icons/icon-hamburger.svg";
+import { NavDialog } from "./NavDialog";
+import { useState } from "react";
+import { menuItems } from "@/constants";
 
-const menuItems = [
-  { name: "About", href: "" },
-  { name: "Careers", href: "" },
-  { name: "Events", href: "" },
-  { name: "Products", href: "" },
-  { name: "Support", href: "" },
-];
+export function NavMenu() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-/**
- * @param {{
- * type: string,
- * }} props
- */
+  const handleMenu = () => {
+    setIsMenuOpen(true);
+  };
 
-export function NavMenu({ type }) {
-  const navClassName = clsx(
-    "w-auto h-auto flex justify-between border-2",
-    {
-      main: "absolute z-50 top-0 inset-x-52 items-center py-16",
-      footer: "flex-col items-start",
-    }[type]
-  );
   return (
-    <div className={navClassName}>
+    <div className="w-auto h-auto flex justify-between border-2 absolute z-50 top-0 xl:inset-x-52 lg:inset-x-32 md:inset-x-20 sm:inset-x-12 inset-x-10 items-center py-16">
       <Link href={"/"}>
         <Image width={150} height={150} src={logo} alt="logo" />
       </Link>
-      <ul className="flex items-center gap-8">
+      <Image
+        width={35}
+        height={35}
+        src={iconHamburger}
+        alt="iconHamburger"
+        className="md:hidden block"
+        onClick={handleMenu}
+      />
+      <ul className="md:flex hidden items-center flex-row md:mt-0 gap-8">
         {menuItems.map((item, index) => {
           return (
             <li
@@ -45,6 +41,7 @@ export function NavMenu({ type }) {
           );
         })}
       </ul>
+      <NavDialog isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
     </div>
   );
 }

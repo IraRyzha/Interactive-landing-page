@@ -1,26 +1,68 @@
 import Link from "next/link";
 import Image from "next/image";
-import deepEarth from "./images/image-deep-earth.jpg";
-import nightArcade from "./images/image-night-arcade.jpg";
-import soccerTeam from "./images/image-soccer-team.jpg";
-import grid from "./images/image-grid.jpg";
-import fromAbove from "./images/image-from-above.jpg";
-import pocketBorealis from "./images/image-pocket-borealis.jpg";
-import curiosity from "./images/image-curiosity.jpg";
-import fisheye from "./images/image-fisheye.jpg";
+import deepEarthDesktop from "./images-desktop/image-deep-earth.jpg";
+import nightArcadeDesktop from "./images-desktop/image-night-arcade.jpg";
+import soccerTeamDesktop from "./images-desktop/image-soccer-team.jpg";
+import gridDesktop from "./images-desktop/image-grid.jpg";
+import fromAboveDesktop from "./images-desktop/image-from-above.jpg";
+import pocketBorealisDesktop from "./images-desktop/image-pocket-borealis.jpg";
+import curiosityDesktop from "./images-desktop/image-curiosity.jpg";
+import fisheyeDesktop from "./images-desktop/image-fisheye.jpg";
 
-const itemsList = [
-  { name: "DEEP EARTH", photo: deepEarth, href: "" },
-  { name: "NIGHT ARCADE", photo: nightArcade, href: "" },
-  { name: "SOCCER TEAM VR", photo: soccerTeam, href: "" },
-  { name: "THE GRID", photo: grid, href: "" },
-  { name: "FROM UP ABOVE VR", photo: fromAbove, href: "" },
-  { name: "POCKET BOREALIS", photo: pocketBorealis, href: "" },
-  { name: "THE CURIOSITY", photo: curiosity, href: "" },
-  { name: "MAKE IT FISHEYE", photo: fisheye, href: "" },
+import deepEarthMobile from "./images-mobile/image-deep-earth.jpg";
+import nightArcadeMobile from "./images-mobile/image-night-arcade.jpg";
+import soccerTeamMobile from "./images-mobile/image-soccer-team.jpg";
+import gridMobile from "./images-mobile/image-grid.jpg";
+import fromAboveMobile from "./images-mobile/image-from-above.jpg";
+import pocketBorealisMobile from "./images-mobile/image-pocket-borealis.jpg";
+import curiosityMobile from "./images-mobile/image-curiosity.jpg";
+import fisheyeMobile from "./images-mobile/image-fisheye.jpg";
+import { useEffect, useState } from "react";
+
+const itemsListDesktop = [
+  { name: "DEEP EARTH", photo: deepEarthDesktop, href: "" },
+  { name: "NIGHT ARCADE", photo: nightArcadeDesktop, href: "" },
+  { name: "SOCCER TEAM VR", photo: soccerTeamDesktop, href: "" },
+  { name: "THE GRID", photo: gridDesktop, href: "" },
+  { name: "FROM UP ABOVE VR", photo: fromAboveDesktop, href: "" },
+  { name: "POCKET BOREALIS", photo: pocketBorealisDesktop, href: "" },
+  { name: "THE CURIOSITY", photo: curiosityDesktop, href: "" },
+  { name: "MAKE IT FISHEYE", photo: fisheyeDesktop, href: "" },
+];
+
+const itemsListMobile = [
+  { name: "DEEP EARTH", photo: deepEarthMobile, href: "" },
+  { name: "NIGHT ARCADE", photo: nightArcadeMobile, href: "" },
+  { name: "SOCCER TEAM VR", photo: soccerTeamMobile, href: "" },
+  { name: "THE GRID", photo: gridMobile, href: "" },
+  { name: "FROM UP ABOVE VR", photo: fromAboveMobile, href: "" },
+  { name: "POCKET BOREALIS", photo: pocketBorealisMobile, href: "" },
+  { name: "THE CURIOSITY", photo: curiosityMobile, href: "" },
+  { name: "MAKE IT FISHEYE", photo: fisheyeMobile, href: "" },
 ];
 
 export function ItemsSection() {
+  const [view, setView] = useState();
+
+  useEffect(() => {
+    const checkView = () => {
+      if (window.innerWidth < 768) {
+        setView("mobile");
+      } else {
+        setView("desktop");
+      }
+    };
+
+    window.addEventListener("resize", checkView);
+
+    return () => {
+      window.addEventListener("resize", checkView);
+    };
+  }, []);
+
+  const renderItemsList =
+    view === "desktop" ? itemsListDesktop : itemsListMobile;
+
   return (
     <section className="w-full h-auto pb-80">
       <div className="flex items-center justify-between py-20">
@@ -31,15 +73,19 @@ export function ItemsSection() {
           </span>
         </button>
       </div>
-      <ul className="flex justify-between flex-wrap gap-8">
-        {itemsList.map((item, index) => {
+      <ul className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 auto-rows-auto gap-8">
+        {renderItemsList.map((item, index) => {
           return (
             <li
               key={index}
-              className="w-[23%] relative hover:opacity-65 transition-all duration-300 ease-in-out border-2"
+              className="w-auto relative hover:opacity-65 transition-all duration-300 ease-in-out border-2"
             >
-              <div className="w-full h-full absolute bg-black opacity-25"></div>
-              <Image width={350} src={item.photo} alt={item.name} />
+              <Image
+                // fill
+                className="w-full h-full"
+                src={item.photo}
+                alt={item.name}
+              />
               <Link
                 href={item.href}
                 className="w-2/3 absolute inset-x-12 bottom-10 text-3xl font-light hover:scale-[1.02] text-white tracking-wider"
