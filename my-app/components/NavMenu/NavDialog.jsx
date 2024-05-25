@@ -3,7 +3,6 @@ import { Dialog, Transition } from "@headlessui/react";
 import Image from "next/image";
 import Link from "next/link";
 import { Fragment } from "react";
-import logo from "./icons/logo.svg";
 import iconClose from "./icons/icon-close.svg";
 
 export function NavDialog({ isOpen, onClose }) {

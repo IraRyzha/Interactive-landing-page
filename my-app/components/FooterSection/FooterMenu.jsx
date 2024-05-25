@@ -5,16 +5,16 @@ import Image from "next/image";
 
 export function FooterMenu() {
   return (
-    <div className="w-full h-auto flex justify-between border-2 flex-col md:items-start items-center">
+    <div className="w-full h-full flex-1 flex gap-5 justify-between flex-col border-2 md:items-start items-center">
       <Link href={"/"}>
         <Image width={150} height={150} src={logo} alt="logo" />
       </Link>
-      <ul className="md:flex items-center md:flex-row md:mt-0 my-5 gap-8 flex-col">
+      <ul className="md:flex items-center md:flex-row md:mt-0 mt-5 gap-8 flex-col">
         {menuItems.map((item, index) => {
           return (
             <li
               key={index}
-              className="text-white font-semibold hover:scale-[1.02] relative group transition-all duration-500 ease-out"
+              className="text-white text-center font-semibold hover:scale-[1.02] relative group transition-all duration-500 ease-out"
             >
               <Link href={item.href}>
                 {item.name}

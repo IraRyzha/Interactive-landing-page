@@ -17,7 +17,8 @@ import fromAboveMobile from "./images-mobile/image-from-above.jpg";
 import pocketBorealisMobile from "./images-mobile/image-pocket-borealis.jpg";
 import curiosityMobile from "./images-mobile/image-curiosity.jpg";
 import fisheyeMobile from "./images-mobile/image-fisheye.jpg";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { MainContext } from "@/context/AppContext";
 
 const itemsListDesktop = [
   { name: "DEEP EARTH", photo: deepEarthDesktop, href: "" },
@@ -42,29 +43,12 @@ const itemsListMobile = [
 ];
 
 export function ItemsSection() {
-  const [view, setView] = useState();
-
-  useEffect(() => {
-    const checkView = () => {
-      if (window.innerWidth < 768) {
-        setView("mobile");
-      } else {
-        setView("desktop");
-      }
-    };
-
-    window.addEventListener("resize", checkView);
-
-    return () => {
-      window.addEventListener("resize", checkView);
-    };
-  }, []);
-
+  const { view } = useContext(MainContext);
   const renderItemsList =
     view === "desktop" ? itemsListDesktop : itemsListMobile;
 
   return (
-    <section className="w-full h-auto pb-80">
+    <section className="w-full h-auto md:pb-80 pb-[520px]">
       <div className="flex items-center justify-between py-20">
         <h3 className="text-3xl font-normal tracking-wider">OUR CREATIONS</h3>
         <button className="py-2 px-10 border-2 border-black border-opacity-65 hover:bg-black hover:opacity-55 group z-30 transition-all duration-300 ease-in-out">
@@ -88,7 +72,7 @@ export function ItemsSection() {
               />
               <Link
                 href={item.href}
-                className="w-2/3 absolute inset-x-12 bottom-10 text-3xl font-light hover:scale-[1.02] text-white tracking-wider"
+                className="w-2/3 absolute md:inset-x-12 inset-x-5  bottom-10 text-3xl font-light hover:scale-[1.02] text-white tracking-wider"
               >
                 {item.name}
               </Link>
