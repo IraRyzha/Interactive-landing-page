@@ -5,11 +5,11 @@ import Image from "next/image";
 
 export function FooterMenu() {
   return (
-    <div className="w-full h-full flex-1 flex gap-5 justify-between flex-col border-2 md:items-start items-center">
+    <div className="w-full h-full flex-1 flex justify-between flex-col md:items-start items-center gap-5 border-2">
       <Link href={"/"}>
         <Image width={150} height={150} src={logo} alt="logo" />
       </Link>
-      <ul className="md:flex items-center md:flex-row md:mt-0 mt-5 gap-8 flex-col">
+      <ul className="h-auto max-h-max flex items-center md:flex-row md:my-0 my-12 gap-5 flex-col">
         {menuItems.map((item, index) => {
           return (
             <li

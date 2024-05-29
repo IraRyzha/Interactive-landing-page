@@ -14,7 +14,7 @@ export function NavMenu() {
   };
 
   return (
-    <div className="w-auto h-auto flex justify-between border-2 absolute z-50 top-0 xl:inset-x-52 lg:inset-x-32 md:inset-x-20 sm:inset-x-12 inset-x-10 items-center py-16">
+    <div className="w-auto h-auto max-w-screen flex justify-between absolute z-50 top-0 xl:inset-x-52 lg:inset-x-32 md:inset-x-20 sm:inset-x-12 inset-x-10 items-center py-16">
       <Link href={"/"}>
         <Image width={150} height={150} src={logo} alt="logo" />
       </Link>

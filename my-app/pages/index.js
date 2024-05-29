@@ -8,7 +8,7 @@ const inter = Open_Sans({ subsets: ["latin"] });
 export default function Home() {
   return (
     <main
-      className={`w-full h-auto flex flex-col items-center border-2 border-indigo-500 ${inter.className}`}
+      className={`w-full h-auto flex flex-col items-center ${inter.className}`}
     >
       <TopSection />
       <DescriptionSection />
