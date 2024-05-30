@@ -19,7 +19,7 @@ export default function AppContext({ children }) {
     checkView();
 
     return () => {
-      window.addEventListener("resize", checkView);
+      window.removeEventListener("resize", checkView);
     };
   }, []);
   return (

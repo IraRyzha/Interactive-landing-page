@@ -10,7 +10,7 @@ const footerIcons = [iconFacebook, iconTwitter, iconPinterest, iconInstagram];
 
 export function FooterSection() {
   return (
-    <div className="w-screen h-auto max-w-screen bg-black z-50 absolute inset-x-0 bottom-0 flex md:flex-row flex-col items-stretch md:justify-between py-8 xl:px-52 lg:px-32 md:px-20 sm:px-12 px-10">
+    <div className="w-full h-auto bg-black z-50 absolute inset-x-0 bottom-0 flex-1 flex md:flex-row flex-col items-stretch md:justify-between py-8 xl:px-52 lg:px-32 md:px-20 sm:px-12 px-10">
       <FooterMenu />
       <div className="flex-1 flex flex-col md:items-end items-center justify-between gap-5 border-2">
         <div className="flex items-center md:self-end gap-5">
