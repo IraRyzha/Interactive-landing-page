@@ -124,7 +124,7 @@ export function ItemsSection() {
         })}
       </ul>
       {view === "mobile" && (
-        <div className="w-full h-auto border-2 flex items-center justify-center py-16">
+        <div className="w-full h-auto flex items-center justify-center py-16">
           <SeeAllButton />
         </div>
       )}
