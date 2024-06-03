@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export function FooterMenu() {
   return (
-    <div className="w-full h-full flex-1 flex justify-between flex-col md:items-start items-center gap-5 border-2">
+    <div className="w-full h-full flex-1 flex justify-between flex-col md:items-start items-center gap-5">
       <Link href={"/"}>
         <Image width={150} height={150} src={logo} alt="logo" />
       </Link>
